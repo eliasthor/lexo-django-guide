@@ -48,4 +48,4 @@ To begin with I'll stick to linux. I will use Ubuntu Bash from within Windows 10
     lexovenvstart
     ```
 4. Install Django
-    - see [https://tutorial.djangogirls.org/en/installation/](Django Girls)
+    - see [Django Girls](https://tutorial.djangogirls.org/en/installation/)
