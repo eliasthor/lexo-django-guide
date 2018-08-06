@@ -33,11 +33,19 @@ To begin with I'll stick to linux. I will use Ubuntu Bash from within Windows 10
     - I start by looking at [Django Girls Tutorial](https://tutorial.djangogirls.org/)
     - Django Girls Tutorial assumes python3.6 while my windows 10 version of ubuntu only has 3.5, I'll need to work around that
 2. Start by creating a folder for the procect and move into that folder
+    ```
+    mkdir LexoDjango
+    cd LexoDjango
+    ```
 3. Set up virtual environment within the new folder
     - Virtual environment (virtual env or just venv) seems to be the trend, I guess it "shields" the setup from unwanted changes in the enviromental settings
-    
-```
-mkdir LexoDjango
-cd LexoDjango
-python3 -m venv lexovenv
-```
+    ```
+    python3 -m venv lexovenv
+    ```
+    Activate it (I find it easier to use alias for this)
+    ```
+    alias lexovenvstart=". lexovenv/bin/activate"
+    lexovenvstart
+    ```
+4. Install Django
+    - see [https://tutorial.djangogirls.org/en/installation/#installing-django](Django Girls)
