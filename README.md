@@ -29,6 +29,9 @@ I think it's better to get the git repository to the local computer before start
     git clone https://github.com/eliasthor/lexo-django-guide.git
     ```
 
+## Useful git info
+* GitLab's "merge-request" is the same as GitHub's "pull-request"
+
 ## How to start the project
 Now, how do I start the project it self?
 
