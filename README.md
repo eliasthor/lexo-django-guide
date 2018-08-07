@@ -4,6 +4,7 @@ A personal guide to creating a Python/Django Site
 This Readme file will contain the steps I took towards a fully functional website for a small organisation.
 
 The site needs to contain sections such as News, FAQ, About etc.
+I like to use linux, so the instruction will be linux based, at least regarding the setup and programming.
 
 ## Create a git repository
 1. Create git repository (assuming you have a github account since you're here already)
@@ -17,10 +18,19 @@ The site needs to contain sections such as News, FAQ, About etc.
     - E.g. [here](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
 6. Commit changes
     - I did not create a new branch for this commit as it is the first/initial commit.
+    
+## Clone the repository to local folder
+I think it's better to get the git repository to the local computer before starting the project
+
+1. Figure out if git is installed on yo
+    - If not, figure out a way to install it
+2. Clone the repository
+    ```
+    git clone https://github.com/eliasthor/lexo-django-guide.git
+    ```
 
 ## How to start the project
 Now, how do I start the project it self?
-I like to use linux, so the instruction will be linux based, at least regarding the setup and programming.
 
 It would also be nice to be able to have the project running in linux, but the coding could take place anywhere.
 
