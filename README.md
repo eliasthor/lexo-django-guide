@@ -62,3 +62,23 @@ To begin with I'll stick to linux. I will use Ubuntu Bash from within Windows 10
     ```
 4. Install Django
     - see [Django Girls](https://tutorial.djangogirls.org/en/installation/)
+
+## Add stuff to git
+1. Get the latest changes from git and then check the git status (on which branch am I, is there something that needs to be added)
+    ```
+    # refresh local repository
+    git pull
+    # on which branch am I, is there anything to be committed/added
+    git status
+    ```
+2. Add everything to git
+    ```
+    # select every folder/file by referencing current directory (.)
+    git add .
+    # commit stuff
+    git commit -am "Adding project to git repo"
+    # update remote repository
+    git push
+    # branch can be merged on remote repository after pushing
+    # consider continueing on branch until the branc is completely finished
+    ```
