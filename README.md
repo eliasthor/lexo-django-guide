@@ -82,3 +82,22 @@ To begin with I'll stick to linux. I will use Ubuntu Bash from within Windows 10
     # branch can be merged on remote repository after pushing
     # consider continueing on branch until the branc is completely finished
     ```
+    
+## Create Django Project
+Now it is possible to create the Django project it self
+1. If venv is not active, activate it
+    ```
+    . lexovenv/bin/acitvate
+    # or use alias
+    ```
+2. Run
+    ```
+    django-admin startproject lexosite
+    ```
+### I ran into problems runnig the django-admin startproject, I got an error saying
+```
+The program 'django-admin' is currently not installed. You can install it by typing:
+sudo apt install python-django-common
+```
+This seems strange and indicates that django is not installed
+As I'm working on branch master, I'm going to try merging the other branch I was using to see what will happen
