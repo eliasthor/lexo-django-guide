@@ -101,3 +101,54 @@ sudo apt install python-django-common
 ```
 This seems strange and indicates that django is not installed
 As I'm working on branch master, I'm going to try merging the other branch I was using to see what will happen
+
+Found out that I hadn't completed the installation...
+The installation starts by activating virtualenv
+Then install pip
+Then install django
+This failed on ubuntu bash on my windows 10 because the venv was referencing python2.7
+
+What I did to solve this
+  * removed the venv directory (rm -rf lexovenv)
+  * installed python3-venv
+  * created the virtualenv again
+
+  ```
+  $ rm -rf lexovenv
+  $ sudo apt install python3-venv
+  $ python3 -m venv lexovenv
+  $ . lexoxovenv/bin/activate
+  (lexovenv)$ python --version
+  Python 3.5.2
+  ```
+Now I'm hoping to be able to proceed, next job is to install pip and django using requirement file
+```
+(lexovenv)$ python3 -m pip install --upgrade pip
+(lexovenv)$ pip install -r requirements.txt
+[...]
+Successfully installed Django-2.0.8. pytz-2018.5
+```
+
+Start Django project
+```
+(lexovenv)$ django-admin startproject lexosite .
+(lexovenv)$ tree -L 2
+.
+├── lexosite
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── lexovenv
+│   ├── bin
+│   ├── include
+│   ├── lib
+│   ├── lib64 -> lib
+│   ├── pip-selfcheck.json
+│   ├── pyvenv.cfg
+│   └── share
+├── manage.py
+├── README.md
+└── requirements.txt
+```
+Looks promising
