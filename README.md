@@ -152,3 +152,51 @@ Start Django project
 └── requirements.txt
 ```
 Looks promising
+
+Check if it works
+```
+$ pwd
+/home/elias/LexoDjango/lexo-django-guide
+$ ./manage.py runserver
+[...]
+Django version 2.0.8, using settings 'lexosite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+It works!
+This can be verified by opening http://localhost:8000/ in browser
+
+Now, what's next?
+Still using info from DjanogGirls
+Add TO lexosite/settings.py:
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+Next?
+Set up a database as shown in DjangoGirls tutorial
+Using default database, so no changes in settings.py
+
+Create a database for the website project:
+```
+python manage.py migrate
+```
+Create a new applicationi which belongs to the project
+On the same level as manage.py
+```
+python manage.py startapp lexonews
+```
+This results in a new folder called lexonews
+```
+$ tree -L 2 lexonews
+lexonews
+├── admin.py
+├── apps.py
+├── __init__.py
+├── migrations
+│   └── __init__.py
+├── models.py
+├── tests.py
+└── views.py
+
+
+```
+
