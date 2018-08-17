@@ -1,4 +1,4 @@
-#!/home/elias/LexoDjango/lexovenv/bin/python3
+#!/home/elias/LexoDjango/lexo-django-guide/lexovenv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
