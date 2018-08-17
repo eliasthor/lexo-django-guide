@@ -101,3 +101,102 @@ sudo apt install python-django-common
 ```
 This seems strange and indicates that django is not installed
 As I'm working on branch master, I'm going to try merging the other branch I was using to see what will happen
+
+Found out that I hadn't completed the installation...
+The installation starts by activating virtualenv
+Then install pip
+Then install django
+This failed on ubuntu bash on my windows 10 because the venv was referencing python2.7
+
+What I did to solve this
+  * removed the venv directory (rm -rf lexovenv)
+  * installed python3-venv
+  * created the virtualenv again
+
+  ```
+  $ rm -rf lexovenv
+  $ sudo apt install python3-venv
+  $ python3 -m venv lexovenv
+  $ . lexoxovenv/bin/activate
+  (lexovenv)$ python --version
+  Python 3.5.2
+  ```
+Now I'm hoping to be able to proceed, next job is to install pip and django using requirement file
+```
+(lexovenv)$ python3 -m pip install --upgrade pip
+(lexovenv)$ pip install -r requirements.txt
+[...]
+Successfully installed Django-2.0.8. pytz-2018.5
+```
+
+Start Django project
+```
+(lexovenv)$ django-admin startproject lexosite .
+(lexovenv)$ tree -L 2
+.
+├── lexosite
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── lexovenv
+│   ├── bin
+│   ├── include
+│   ├── lib
+│   ├── lib64 -> lib
+│   ├── pip-selfcheck.json
+│   ├── pyvenv.cfg
+│   └── share
+├── manage.py
+├── README.md
+└── requirements.txt
+```
+Looks promising
+
+Check if it works
+```
+$ pwd
+/home/elias/LexoDjango/lexo-django-guide
+$ ./manage.py runserver
+[...]
+Django version 2.0.8, using settings 'lexosite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+It works!
+This can be verified by opening http://localhost:8000/ in browser
+
+Now, what's next?
+Still using info from DjanogGirls
+Add TO lexosite/settings.py:
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+Next?
+Set up a database as shown in DjangoGirls tutorial
+Using default database, so no changes in settings.py
+
+Create a database for the website project:
+```
+python manage.py migrate
+```
+Create a new applicationi which belongs to the project
+On the same level as manage.py
+```
+python manage.py startapp lexonews
+```
+This results in a new folder called lexonews
+```
+$ tree -L 2 lexonews
+lexonews
+├── admin.py
+├── apps.py
+├── __init__.py
+├── migrations
+│   └── __init__.py
+├── models.py
+├── tests.py
+└── views.py
+
+
+```
+
