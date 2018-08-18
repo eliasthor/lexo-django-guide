@@ -250,3 +250,25 @@ Migrations for 'lexonews':
 
 $ python manage.py migrate lexonews
 ```
+
+So, now a database table has been created using model object describing the attributes of the table.
+The data can be edited via admin site, but to be able to do that, I need to register the model as an admin thing:
+
+Edit the lexonews/admin.py:
+```
+$ vim lexonews/admin.py
+
+from django.contrib import admin
+from .models import Article
+
+admin.site.register(Article) 
+```
+
+Now I can work with the table (add, edit and delete article), or what?
+First I need a user, a superuser to be precise.
+```
+$ python manage.py createsuperuser
+```
+
+At this point I wonder if I should have had this guide as a seperate project/repository in git and have the code elsewhere.
+Probably it would be best to create a new repo for the website and remove the code from here
