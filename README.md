@@ -272,3 +272,5 @@ $ python manage.py createsuperuser
 
 At this point I wonder if I should have had this guide as a seperate project/repository in git and have the code elsewhere.
 Probably it would be best to create a new repo for the website and remove the code from here
+
+This is a good oportunity to test this guide.
