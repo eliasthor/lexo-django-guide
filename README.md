@@ -196,7 +196,57 @@ lexonews
 ├── models.py
 ├── tests.py
 └── views.py
-
-
 ```
 
+The application/app needs to be registered in settings.py so that django knows it should be using it
+```
+vim lexosite/settings.py
+[...]
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'lexonews',
+]
+
+[...]
+```
+
+Then what?
+Create a model (model is an object which maps to a table in database)
+This is how I started with lexonews/models.py:
+```
+from django.db import models
+from django.utils import timezone
+
+class Article(models.Model):
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    headline = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(
+        default=timezone.now)
+    published_date = models.DateTimeField(
+        blank=True, null=True)
+
+def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+def __str__(self):
+        return self.headlinew
+```
+
+Now use this to create a database table:
+```
+$ python manage.py makemigrations lexonews
+Migrations for 'lexonews':
+  lexonews/migrations/0001_initial.py
+    - Create model Article
+
+$ python manage.py migrate lexonews
+```
