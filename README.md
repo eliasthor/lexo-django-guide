@@ -184,13 +184,21 @@ This can be verified by opening http://localhost:8000/ in browser
 2. Add everything to git
     ```
     # select every folder/file by referencing current directory (.)
-    git add .
+    (lexovenv)$ git add .
     # commit stuff
-    git commit -am "Adding project to git repo"
+    (lexovenv)$ git commit -am "Adding project to git repo"
     # update remote repository
-    git push
+    (lexovenv)$ git push
     # branch can be merged on remote repository after pushing
-    # consider continueing on branch until the branc is completely finished
+    # consider continuing on branch until the branch is completely finished
+    
+    (lexovenv)$ git checkout -b LexoNews
+    # creates a new branch based on current branch (master) and switches to it
+    # new branch is called LexoNews
+    # verify on which branch I am working
+    (lexovenv)$ git branch
+    * LexoNews
+    master
     ```
 
 Now, what's next?
