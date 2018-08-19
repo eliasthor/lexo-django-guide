@@ -94,6 +94,44 @@ Now it is possible to create the Django project it self
     ```
     django-admin startproject lexosite
     ```
+### I've twice run into problems when trying to run django-admin startproject
+  * The second time was this:
+    After creating venv using
+    ```
+    $ python3 -m venv lexovenv
+    $ . lexovenv/bin/activate
+    (lexovenv)$ python3 -m pip install --upgrade pip
+    (lexovenv)$ vim requirements.txt
+    (lexovenv)$ pip install -r requirements.txt
+    (lexovenv)$ django-admin startproject lexosite
+    # error
+    (lexovenv)$ python --version
+    Python 3.5.2
+    (lexovenv)$ python3 -m pip install --upgrade pip
+    (lexovenv)$ django-admin startproject lexosite .
+    # error
+    (lexovenv)$ apt install python-django-common
+    # error
+    (lexovenv)$ sudo apt install python-django-common
+    (lexovenv)$ django-admin startproject lexosite .
+    # error
+    (lexovenv)$ pip install -r requirements.txt
+    # django already installed
+    (lexovenv)$ sudo pip install -r requirements.txt
+    # more convincing stuff starts
+    # but still get an error implying usage of Python2.7
+    # error includes suggestions
+    # a) python -m pip install --upgrade pip setuptools
+    # b) python -m pip install django
+    (lexovenv)$ python -m pip install --upgrade pip setuptools
+    [...]
+    Successfully installed setuptools-40.1.0
+    (lexovenv)$ python -m pip install django
+    Requirement already satisfied
+    (lexovenv)$ django-admin startproject lexosite .
+    # no error
+    ```
+  * The first time was this
 ### I ran into problems runnig the django-admin startproject, I got an error saying
 ```
 The program 'django-admin' is currently not installed. You can install it by typing:
@@ -119,7 +157,7 @@ What I did to solve this
   $ python3 -m venv lexovenv
   $ . lexoxovenv/bin/activate
   (lexovenv)$ python --version
-  Python 3.5.2
+  Python 3.5.2pyt
   ```
 Now I'm hoping to be able to proceed, next job is to install pip and django using requirement file
 ```
