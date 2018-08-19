@@ -1,9 +1,11 @@
 # lexo-django-guide
 A personal guide to creating a Python/Django Site
+Thanks a lot to [Django Girls Tutorial](https://tutorial.djangogirls.org/) for providing most of the info I need
 
+# Objective
 This Readme file will contain the steps I took towards a fully functional website for a small organisation.
 
-The site needs to contain sections such as News, FAQ, About etc.
+The site I plan to build needs to contain sections such as News, FAQ, About etc.
 I like to use linux, so the instruction will be linux based, at least regarding the setup and programming.
 
 Furthermore, I'm usin ubuntu-bash on windows 10, which sometimes requires a different approach than in other setups
@@ -97,39 +99,79 @@ Perhaps it's also best to add the venv folder to gitignore, no need to track its
   
   activate venv
   $ . lexovenv/bin/activate
+  (lexovenv)$
   ```
 
+## Install pip and setuptools in an activated venv
+This part caused me a lot of problems, probably because I'm working in a linux-bash within Windows 10
+The following worked for me at last
+  ```
+  #with lexovenv activated, make sure the python is 3.x (not 2.7)
+  (lexovenv)$ python --version
+  Python 3.5.2
+  
+  # make sure you're located in the same directory as the README.md file
+  (lexovenv)$ pwd
+  /home/elias/LexoDjango/lexometrica
+  
+  # The tutorial I used did not include "setuptools"
+  # and that cost me a lot of time
+  # eventually the following worked for me:
+  (lexovenv)$ python -m pip install --upgrade pip setuptools
+  Successfully installed pip-18.0 setuptools-40.1.0
+  ```
+## Install Django
+It is reccomended to use a requirements file to install Django
+As a start, the requirements file can be created manually
+It is possible to recreate a requirement file using complete setup
+  ```
+  vim requirements.txt
+  # added one line: Django~=2.0.6
+  
+  pip install -r requirements.txt
+  Successfully installed Django-2.0.8 pytz-2018.5
+  ```
 
-## How to start the project
-Now, how do I start the project it self?
+## Start/create the project itself
+Now everything should be ready to create the website project
+  ```
+  (djangovenv)$ django-admin startproject lexosite .
+  ```
+Some files and folders have now been created
+  ```
+  # I use tree to show the folderstructure
+  (lexovenv)$ tree -L 2
+  .
+  ├── lexosite
+  │   ├── __init__.py
+  │   ├── settings.py
+  │   ├── urls.py
+  │   └── wsgi.py
+  ├── lexovenv
+  │   ├── bin
+  │   ├── include
+  │   ├── lib
+  │   ├── lib64 -> lib
+  │   ├── pip-selfcheck.json
+  │   ├── pyvenv.cfg
+  │   └── share
+  ├── manage.py
+  ├── README.md
+  └── requirements.txt
+  ```
 
-It would also be nice to be able to have the project running in linux, but the coding could take place anywhere.
-
-To make that work, every change would need to be committed and pushed to git, then pulled from git into the testing/running environment how it turns out.
-
-To begin with I'll stick to linux. I will use Ubuntu Bash from within Windows 10 (search for instructions on how to run ubuntu on Windows 10)
-
-1. Look for some how-to instructions
-    - As soon as I know what I'm doing, I can update (or even remove) this step
-    - I start by looking at [Django Girls Tutorial](https://tutorial.djangogirls.org/)
-    - Django Girls Tutorial assumes python3.6 while my windows 10 version of ubuntu only has 3.5, I'll need to work around that
-2. Start by creating a folder for the procect and move into that folder
-    ```
-    mkdir LexoDjango
-    cd LexoDjango
-    ```
-3. Set up virtual environment within the new folder
-    - Virtual environment (virtual env or just venv) seems to be the trend, I guess it "shields" the setup from unwanted changes in the enviromental settings
-    ```
-    python3 -m venv lexovenv
-    ```
-    Activate it (I find it easier to use alias for this)
-    ```
-    alias lexovenvstart=". lexovenv/bin/activate"
-    lexovenvstart
-    ```
-4. Install Django
-    - see [Django Girls](https://tutorial.djangogirls.org/en/installation/)
+## Check if it works
+```
+(lexovenv)$ pwd
+/home/elias/LexoDjango/lexometrica
+(lexovenv)$ ./manage.py runserver
+[...]
+Django version 2.0.8, using settings 'lexosite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+It works!
+This can be verified by opening http://localhost:8000/ in browser
 
 ## Add stuff to git
 1. Get the latest changes from git and then check the git status (on which branch am I, is there something that needs to be added)
@@ -150,130 +192,6 @@ To begin with I'll stick to linux. I will use Ubuntu Bash from within Windows 10
     # branch can be merged on remote repository after pushing
     # consider continueing on branch until the branc is completely finished
     ```
-    
-## Create Django Project
-Now it is possible to create the Django project it self
-1. If venv is not active, activate it
-    ```
-    . lexovenv/bin/acitvate
-    # or use alias
-    ```
-2. Run
-    ```
-    # after experiencing problems described below
-    # I found out that pip setuptools needed to be upgraded
-    (lexovenv)$ python -m pip install --upgrade pip setuptools
-    # before being able to run the django-admin startproject
-    (lexovenv)$ django-admin startproject lexosite
-    ```
-### I've twice run into problems when trying to run django-admin startproject
-  * The second time was this:
-    ```
-    $ python3 -m venv lexovenv
-    $ . lexovenv/bin/activate
-    (lexovenv)$ python3 -m pip install --upgrade pip
-    (lexovenv)$ vim requirements.txt
-    (lexovenv)$ pip install -r requirements.txt
-    (lexovenv)$ django-admin startproject lexosite
-    # error
-    (lexovenv)$ python --version
-    Python 3.5.2
-    (lexovenv)$ python3 -m pip install --upgrade pip
-    (lexovenv)$ django-admin startproject lexosite .
-    # error
-    (lexovenv)$ apt install python-django-common
-    # error
-    (lexovenv)$ sudo apt install python-django-common
-    (lexovenv)$ django-admin startproject lexosite .
-    # error
-    (lexovenv)$ pip install -r requirements.txt
-    # django already installed
-    (lexovenv)$ sudo pip install -r requirements.txt
-    # more convincing stuff starts
-    # but still get an error implying usage of Python2.7
-    # error includes suggestions
-    # a) python -m pip install --upgrade pip setuptools
-    # b) python -m pip install django
-    (lexovenv)$ python -m pip install --upgrade pip setuptools
-    [...]
-    Successfully installed setuptools-40.1.0
-    (lexovenv)$ python -m pip install django
-    Requirement already satisfied
-    (lexovenv)$ django-admin startproject lexosite .
-    # no error
-    ```
-  * The first time was this
-### I ran into problems runnig the django-admin startproject, I got an error saying
-```
-The program 'django-admin' is currently not installed. You can install it by typing:
-sudo apt install python-django-common
-```
-This seems strange and indicates that django is not installed
-As I'm working on branch master, I'm going to try merging the other branch I was using to see what will happen
-
-Found out that I hadn't completed the installation...
-The installation starts by activating virtualenv
-Then install pip
-Then install django
-This failed on ubuntu bash on my windows 10 because the venv was referencing python2.7
-
-What I did to solve this
-  * removed the venv directory (rm -rf lexovenv)
-  * installed python3-venv
-  * created the virtualenv again
-
-  ```
-  $ rm -rf lexovenv
-  $ sudo apt install python3-venv
-  $ python3 -m venv lexovenv
-  $ . lexoxovenv/bin/activate
-  (lexovenv)$ python --version
-  Python 3.5.2pyt
-  ```
-Now I'm hoping to be able to proceed, next job is to install pip and django using requirement file
-```
-(lexovenv)$ python3 -m pip install --upgrade pip
-(lexovenv)$ pip install -r requirements.txt
-[...]
-Successfully installed Django-2.0.8. pytz-2018.5
-```
-
-Start Django project
-```
-(lexovenv)$ django-admin startproject lexosite .
-(lexovenv)$ tree -L 2
-.
-├── lexosite
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── lexovenv
-│   ├── bin
-│   ├── include
-│   ├── lib
-│   ├── lib64 -> lib
-│   ├── pip-selfcheck.json
-│   ├── pyvenv.cfg
-│   └── share
-├── manage.py
-├── README.md
-└── requirements.txt
-```
-Looks promising
-
-Check if it works
-```
-$ pwd
-/home/elias/LexoDjango/lexo-django-guide
-$ ./manage.py runserver
-[...]
-Django version 2.0.8, using settings 'lexosite.settings'
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
-```
-It works!
-This can be verified by opening http://localhost:8000/ in browser
 
 Now, what's next?
 Still using info from DjanogGirls
