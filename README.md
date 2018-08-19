@@ -14,7 +14,8 @@ The guide requires
   * some knowledge of linux (e.g. how to navigate between folders)
   * some knowledge of how git works
   * installed git
-  * linux-ish kind of environment
+  * linux-ish kind of environment (terminal/command promt)
+  * [tmux](https://robots.thoughtbot.com/a-tmux-crash-course) is reccomended but not required
 
 # What needs to be done
 After iterating several times through the process, experiencing errors and clumsyness, I figured these major steps out
@@ -171,7 +172,13 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 It works!
-This can be verified by opening http://localhost:8000/ in browser
+This can be verified by opening [http://localhost:8000/](http://localhost:8000/) in browser
+
+Now the terminal window is occupied running the server
+To continue do one of the following
+* Shut down the server by pressing Ctrl-c
+* Open new terminal
+* Split the terminal (which is possible when using tmux which I highly reccomend)
 
 ## Add stuff to git
 1. Get the latest changes from git and then check the git status (on which branch am I, is there something that needs to be added)
@@ -201,111 +208,130 @@ This can be verified by opening http://localhost:8000/ in browser
     master
     ```
 
-Now, what's next?
-Still using info from DjanogGirls
-Add TO lexosite/settings.py:
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# Start Development
+Now it's time to move on and do some programming work
 
-Next?
+The DjanogGirls tutorial suggest adding a path to static files to settings.py but I guess it's mainly to demonstrate how settings can be changed.
+It's probably best to get it done (saves some steps later I guess)
+
+  ```
+  (lexovenv)$ vim lexosite/settings.py
+  # add STATIC_ROOT path at the end of the file (next to STATIC_URL)
+  
+  STATIC_URL = '/static/'
+  STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+  ```
+
+## Database setup
 Set up a database as shown in DjangoGirls tutorial
 Using default database, so no changes in settings.py
 
 Create a database for the website project:
-```
-python manage.py migrate
-```
-Create a new applicationi which belongs to the project
-On the same level as manage.py
-```
-python manage.py startapp lexonews
-```
+  ```
+  (lexovenv)$ python manage.py migrate
+  ```
+
+## Create application
+Create a new application which belongs to the project (on the same level as manage.py)
+  ```
+  (lexovenv)$ python manage.py startapp lexonews
+  ```
 This results in a new folder called lexonews
-```
-$ tree -L 2 lexonews
-lexonews
-├── admin.py
-├── apps.py
-├── __init__.py
-├── migrations
-│   └── __init__.py
-├── models.py
-├── tests.py
-└── views.py
-```
+  ```
+  (lexovenv)$ tree -L 2 lexonews
+  lexonews
+  ├── admin.py
+  ├── apps.py
+  ├── __init__.py
+  ├── migrations
+  │   └── __init__.py
+  ├── models.py
+  ├── tests.py
+  └── views.py
+  ```
 
+## Register the new application
 The application/app needs to be registered in settings.py so that django knows it should be using it
-```
-vim lexosite/settings.py
-[...]
-# Application definition
+  ```
+  (lexovenv)$ vim lexosite/settings.py
+  [...]
+  # Application definition
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'lexonews',
-]
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+      'lexonews',
+  ]
+  
+  [...]
+  ```
 
-[...]
-```
-
-Then what?
-Create a model (model is an object which maps to a table in database)
+## Create a model and database table
+### Create a model (model is an object which maps to a table in database)
 This is how I started with lexonews/models.py:
-```
-from django.db import models
-from django.utils import timezone
+  ```
+  from django.db import models
+  from django.utils import timezone
+  
+  class Article(models.Model):
+      author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+      headline = models.CharField(max_length=200)
+      text = models.TextField()
+      created_date = models.DateTimeField(
+          default=timezone.now)
+      published_date = models.DateTimeField(
+          blank=True, null=True)
+  
+  def publish(self):
+          self.published_date = timezone.now()
+          self.save()
+  
+  def __str__(self):
+          return self.headline
+  ```
 
-class Article(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    headline = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(
-        default=timezone.now)
-    published_date = models.DateTimeField(
-        blank=True, null=True)
+### Use the model to create a database table:
+  ```
+  (lexovenv)$ python manage.py makemigrations lexonews
+  Migrations for 'lexonews':
+    lexonews/migrations/0001_initial.py
+      - Create model Article
+  
+  (lexovenv)$ python manage.py migrate lexonews
+  ```
 
-def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
-def __str__(self):
-        return self.headlinew
-```
-
-Now use this to create a database table:
-```
-$ python manage.py makemigrations lexonews
-Migrations for 'lexonews':
-  lexonews/migrations/0001_initial.py
-    - Create model Article
-
-$ python manage.py migrate lexonews
-```
-
+## Make the new model/table accessible via django admin page
 So, now a database table has been created using model object describing the attributes of the table.
-The data can be edited via admin site, but to be able to do that, I need to register the model as an admin thing:
+The data can be edited via admin site, but to be able to do that, the model needs to be registered as an admin thing
 
-Edit the lexonews/admin.py:
-```
-$ vim lexonews/admin.py
+  ```
+  (lexovenv)$ vim lexonews/admin.py
 
-from django.contrib import admin
-from .models import Article
+  from django.contrib import admin
+  from .models import Article
+  
+  admin.site.register(Article) 
+  ```
 
-admin.site.register(Article) 
-```
+## Create superuser
+A user is needed to be able to access the model via admin page
 
-Now I can work with the table (add, edit and delete article), or what?
-First I need a user, a superuser to be precise.
-```
-$ python manage.py createsuperuser
-```
+  ```
+  (lexovenv)$ python manage.py createsuperuser
+  # follow the instructions
+  # don't worry if you don't see your password, it's invisible
+  ```
 
-At this point I wonder if I should have had this guide as a seperate project/repository in git and have the code elsewhere.
-Probably it would be best to create a new repo for the website and remove the code from here
-
-This is a good oportunity to test this guide.
+## View the new model via admin page
+If the server is not already running in a seperate terminal, then start it (in a seperate terminal)
+  ```
+  (lexovenv)$ pwd
+  /home/elias/LexoDjango/lexometrica
+  (lexovenv)$ ./manage.py runserver
+  ```
+* Open the admin page in a browser [http://localhost:8000/admin/](http://localhost:8000/admin/)
+* Log in using the superuser account
