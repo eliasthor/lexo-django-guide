@@ -6,14 +6,22 @@ This Readme file will contain the steps I took towards a fully functional websit
 The site needs to contain sections such as News, FAQ, About etc.
 I like to use linux, so the instruction will be linux based, at least regarding the setup and programming.
 
+Furthermore, I'm usin ubuntu-bash on windows 10, which sometimes requires a different approach than in other setups
+
+The guide requires
+  * some knowledge of linux (e.g. how to navigate between folders)
+  * some knowledge of how git works
+  * installed git
+  * linux-ish kind of environment
+
 # What needs to be done
-After iterating several times through the process, experiencing errors and clumsyness, I figured these steps out
+After iterating several times through the process, experiencing errors and clumsyness, I figured these major steps out
   * Create a git repository and clone it to local computer
-  * Create virtual environment/virtualenv/venv
-  * install pip and setuptools
-  * create requirements file
+  * Create virtual environment/virtualenv/venv within the folder from git
+  * install pip and setuptools in an activated venv
   * Install Django using a requirements file
   
+  This is how my glossary looked like (the last time I went through the steps)
   ```
   Going through steps:
   
@@ -57,9 +65,14 @@ After iterating several times through the process, experiencing errors and clums
 ### Clone the repository to local folder
 I think it's better to get the git repository to the local computer before starting the project
 
-1. Figure out if git is installed on yo
+1. Figure out if git is installed locally
     - If not, figure out a way to install it
-2. Clone the repository
+2. Create a folder for all this stuff, e.g.
+    ```
+    $ mkdir DjangoStuff
+    $ cd DjangoStuff
+    ```
+3. Clone the repository
     ```
     git clone https://github.com/eliasthor/lexo-django-guide.git
     ```
@@ -67,8 +80,24 @@ I think it's better to get the git repository to the local computer before start
 ### Useful git info
 * GitLab's "merge-request" is the same as GitHub's "pull-request"
 
-## venv
-
+## Virtualenv
+The usage of virtualenv(virtual environment) makes it easier to isolate the setup from other projects which migth have different setup requirements (different versions of software etc.)
+I like to have the virtualenv inside the projects folder for clarity, but I guess it can be anywhere
+Perhaps it's also best to add the venv folder to gitignore, no need to track its changes
+  ```
+  $ cd lexometrica
+  
+  create venv
+  $ python3 -m venv lexovenv
+  
+  add venv to .gitignore
+  vim .gitignore
+  Find the #Environment section and add
+  /lexovenv
+  
+  activate venv
+  $ . lexovenv/bin/activate
+  ```
 
 
 ## How to start the project
