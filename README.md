@@ -6,7 +6,42 @@ This Readme file will contain the steps I took towards a fully functional websit
 The site needs to contain sections such as News, FAQ, About etc.
 I like to use linux, so the instruction will be linux based, at least regarding the setup and programming.
 
-## Create a git repository
+# What needs to be done
+After iterating several times through the process, experiencing errors and clumsyness, I figured these steps out
+  * Create a git repository and clone it to local computer
+  * Create virtual environment/virtualenv/venv
+  * install pip and setuptools
+  * create requirements file
+  * Install Django using a requirements file
+  
+  ```
+  Going through steps:
+  
+  github, create repository
+  locally, in some generic folder (e.g. DjangoStuff), clone the git repository
+  move into the new folder from git
+  cd lexometrica
+  
+  create venv
+  python3 -m venv lexovenv
+  
+  . lexovenv/bin/activate
+  
+  python --version
+  Python 3.5.2
+  python -m pip install --upgrade pip setuptools
+  Successfully installed pip-18.0 setuptools-40.1.0
+  
+  vim requirements.txt --> added one line: Django~=2.0.6
+  pip install -r requirements.txt
+  Successfully installed Django-2.0.8 pytz-2018.5
+  
+  django-admin startproject lexosite .
+  ```
+
+
+## Git
+### Create a git repository
 1. Create git repository (assuming you have a github account since you're here already)
     - The name and description will appear as the first two lines in this document
 2. Select "Public" unless you like to pay for privacy
@@ -19,7 +54,7 @@ I like to use linux, so the instruction will be linux based, at least regarding 
 6. Commit changes
     - I did not create a new branch for this commit as it is the first/initial commit.
     
-## Clone the repository to local folder
+### Clone the repository to local folder
 I think it's better to get the git repository to the local computer before starting the project
 
 1. Figure out if git is installed on yo
@@ -29,8 +64,12 @@ I think it's better to get the git repository to the local computer before start
     git clone https://github.com/eliasthor/lexo-django-guide.git
     ```
 
-## Useful git info
+### Useful git info
 * GitLab's "merge-request" is the same as GitHub's "pull-request"
+
+## venv
+
+
 
 ## How to start the project
 Now, how do I start the project it self?
