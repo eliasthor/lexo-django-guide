@@ -92,11 +92,14 @@ Now it is possible to create the Django project it self
     ```
 2. Run
     ```
-    django-admin startproject lexosite
+    # after experiencing problems described below
+    # I found out that pip setuptools needed to be upgraded
+    (lexovenv)$ python -m pip install --upgrade pip setuptools
+    # before being able to run the django-admin startproject
+    (lexovenv)$ django-admin startproject lexosite
     ```
 ### I've twice run into problems when trying to run django-admin startproject
   * The second time was this:
-    After creating venv using
     ```
     $ python3 -m venv lexovenv
     $ . lexovenv/bin/activate
