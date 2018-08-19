@@ -272,7 +272,7 @@ The application/app needs to be registered in settings.py so that django knows i
 
 ## Create a model and database table
 ### Create a model (model is an object which maps to a table in database)
-This is how I started with lexonews/models.py:
+Edit lexonews/models.py (make sure indentation is correct)
   ```
   from django.db import models
   from django.utils import timezone
@@ -286,11 +286,11 @@ This is how I started with lexonews/models.py:
       published_date = models.DateTimeField(
           blank=True, null=True)
   
-  def publish(self):
+      def publish(self):
           self.published_date = timezone.now()
           self.save()
   
-  def __str__(self):
+      def __str__(self):
           return self.headline
   ```
 
