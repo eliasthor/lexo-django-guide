@@ -335,3 +335,10 @@ If the server is not already running in a seperate terminal, then start it (in a
   ```
 * Open the admin page in a browser [http://localhost:8000/admin/](http://localhost:8000/admin/)
 * Log in using the superuser account
+
+## Create the GUI
+Until now, the user cannot see anything useful.
+I need to do something to change that
+
+### Configure URL to use
+Follow [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_urls/) but adjust app names etc. as needed
