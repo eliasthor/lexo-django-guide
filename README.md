@@ -342,3 +342,6 @@ I need to do something to change that
 
 ### Configure URL to use
 Follow [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_urls/) but adjust app names etc. as needed
+
+### Create views
+Views store most of the logic (!)
