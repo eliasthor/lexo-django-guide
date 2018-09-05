@@ -338,6 +338,7 @@ If the server is not already running in a seperate terminal, then start it (in a
 
 ## Create the GUI
 Until now, the user cannot see anything useful.
+
 I need to do something to change that
 
 ### Configure URL to use
@@ -345,4 +346,5 @@ Follow [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_url
 
 ### Create views
 Views store most of the logic (!)
+
 Continuing using [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_views/)
