@@ -345,3 +345,4 @@ Follow [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_url
 
 ### Create views
 Views store most of the logic (!)
+Continuing using [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_views/)
