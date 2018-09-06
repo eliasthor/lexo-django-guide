@@ -346,6 +346,8 @@ Follow [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_url
 
 ### Create views
 Views store most of the logic (!)
+View connects models and templates
+View holds the logic which decides what to show in templates
 
 Continuing using [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_views/)
 
