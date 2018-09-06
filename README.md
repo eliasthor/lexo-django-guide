@@ -346,11 +346,14 @@ Follow [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_url
 
 ### Create views
 Views store most of the logic (!)
+
 View connects models and templates
+
 View holds the logic which decides what to show in templates
 
 Continuing using [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_views/)
 
 ### Create template
 The actual html files are called templates and are stored in the app directory under templates, e.g. lexonews/templates/lexonews/articles.html
+
 See the instructions mentioned above
