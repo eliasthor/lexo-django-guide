@@ -357,3 +357,18 @@ Continuing using [DjangoGirls instructions](https://tutorial.djangogirls.org/en/
 The actual html files are called templates and are stored in the app directory under templates, e.g. lexonews/templates/lexonews/articles.html
 
 See the instructions mentioned above
+
+### How the tree looks like after adding URLs, views and templates
+  ```
+  lexonews
+  ├── admin.py
+  ├── apps.py
+  ├── __init__.py
+  ├── models.py
+  ├── templates
+  │   └── lexonews
+  │       └── articles.html
+  ├── tests.py
+  ├── urls.py
+  └── views.py
+  ```
