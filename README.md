@@ -350,7 +350,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.articles, name='articles'),                                                                       l
+    path('', views.articles, name='articles'),
 ]
 ```
 
@@ -371,7 +371,7 @@ from django.utils import timezone
 from .models import Article
 
 def articles(request):
-    articles = Article.objects.filter(published_date__lte=timezone.now()).order_by('published_date')                 l
+    articles = Article.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'lexonews/articles.html', {'articles': articles})
 ```
 
@@ -394,7 +394,7 @@ lexonews/templates/lexonews/articles.html
         <p>published: {{ article.published_date }}</p>
         <h1><a href="">{{ article.headline }}</a></h1>
         <p>{{ article.text|linebreaksbr }}</p>
-    </div>                                                                                                           l
+    </div>
 {% endfor %}
 ```
 
