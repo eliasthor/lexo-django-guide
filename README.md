@@ -381,8 +381,8 @@ The actual html files are called templates and are stored in the app directory u
 See the instructions mentioned above
 #### Add css to make it look better
 See [DjangoGirls](https://tutorial.djangogirls.org/en/css/) to see how
-My first working template looks like this (including bootstrap css stylesheet reference)
-lexonews/templates/lexonews/articles.html
+
+My first working template (lexonews/templates/lexonews/articles.html) looks like this (including bootstrap css stylesheet reference)
 ```
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
