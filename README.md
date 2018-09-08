@@ -344,6 +344,16 @@ I need to do something to change that
 ### Configure URL to use
 Follow [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_urls/) but adjust app names etc. as needed
 
+My first lexonews/urls.py looks like this
+```
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.articles, name='articles'),                                                                       l
+]
+```
+
 ### Create views
 Views store most of the logic (!)
 
@@ -353,12 +363,42 @@ View holds the logic which decides what to show in templates
 
 Continuing using [DjangoGirls instructions](https://tutorial.djangogirls.org/en/django_views/)
 
+My first working version of lexonews/views.py looks like this
+
+```
+from django.shortcuts import render
+from django.utils import timezone
+from .models import Article
+
+def articles(request):
+    articles = Article.objects.filter(published_date__lte=timezone.now()).order_by('published_date')                 l
+    return render(request, 'lexonews/articles.html', {'articles': articles})
+```
+
 ### Create template
 The actual html files are called templates and are stored in the app directory under templates, e.g. lexonews/templates/lexonews/articles.html
 
 See the instructions mentioned above
 
-### How the tree looks like after adding URLs, views and templates
+My first working template looks like this
+lexonews/templates/lexonews/articles.html
+```
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<div>
+    <h1><a href="/">Lexometrica News</a></h1>
+</div>
+
+{% for article in articles %}
+    <div>
+        <p>published: {{ article.published_date }}</p>
+        <h1><a href="">{{ article.headline }}</a></h1>
+        <p>{{ article.text|linebreaksbr }}</p>
+    </div>                                                                                                           l
+{% endfor %}
+```
+
+### How the lexonews tree looks like after adding URLs, views and templates (omitting migrations and other stuff)
   ```
   lexonews
   ├── admin.py
