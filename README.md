@@ -77,7 +77,15 @@ I think it's better to get the git repository to the local computer before start
     ```
 3. Clone the repository
     ```
-    git clone https://github.com/eliasthor/lexo-django-guide.git
+    # this repository:
+    $ git clone https://github.com/eliasthor/lexo-django-guide.git
+    
+    # The website project:
+    $ git clone https://github.com/eliasthor/lexometrica.git
+    
+    # As the website project progresses, other branches might be available
+    # Switch to a different branch, e.g. LexoNews like this:
+    $ git checkout LexoNews
     ```
 
 ### Useful git info
