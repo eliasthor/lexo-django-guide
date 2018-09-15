@@ -31,15 +31,24 @@ After iterating several times through the process, experiencing errors and clums
   github, create repository
   locally, in some generic folder (e.g. DjangoStuff), clone the git repository
   move into the new folder from git
-  cd lexometrica
+  $ cd lexometrica
   
   create venv
-  python3 -m venv lexovenv
-  
+  $ python3 -m venv lexovenv
+  -- on a different pc I ran into an error saying venv was not installed
+  -- installing python3-venv was suggested
+  -- but after some researching I ran
+  $ python3 --version
+  Python 3.6.5
+  $ sudo apt-get install pyton3.6-venv 
+  $ python3 -m create venv lexovenv
+  -- it worked
+  -- activate it
   . lexovenv/bin/activate
   
   python --version
   Python 3.5.2
+  # Python 3.6.5 on the other PC
   python -m pip install --upgrade pip setuptools
   Successfully installed pip-18.0 setuptools-40.1.0
   
