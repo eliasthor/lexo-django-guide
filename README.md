@@ -14,7 +14,7 @@ The guide requires
   * some knowledge of linux (e.g. how to navigate between folders)
   * some knowledge of how git works
   * installed git
-  * linux-ish kind of environment (terminal/command promt)
+  * linux-ish kind of environment (terminal/command prompt)
   * [tmux](https://robots.thoughtbot.com/a-tmux-crash-course) is reccomended but not required
 
 # What needs to be done
@@ -453,6 +453,12 @@ Here is how the tree looks like after adding the css file:
   │   └── lexonews
   │       └── articles.html
   ```
+  
+In addittion to css files, a base file can be added to the static directory.
+
+It should contain the basic structure for the web, to be used to keep the structure consistent:
+[Again, take a look at the DjangoGirls Turorial](https://tutorial.djangogirls.org/en/template_extending/#create-a-base-template)
+
 
 ## User administration/authentication
 Now how can I make it possible for users to add new things to the site?
