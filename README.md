@@ -431,3 +431,6 @@ My first working template (lexonews/templates/lexonews/articles.html) looks like
   ├── urls.py
   └── views.py
   ```
+## User administration/authentication
+Now how can I make it possible for users to add new things to the site?
+I guess I need some sort of user administration (sign up, log in) and a page to write articles
