@@ -431,6 +431,29 @@ My first working template (lexonews/templates/lexonews/articles.html) looks like
   ├── urls.py
   └── views.py
   ```
+
+### Static files
+Files which are not changing, static files, such as those who define the look on the web, belong in a special directory called "static"
+
+DjangoGirls tutorial shows a bit about css so I'm not going through that here
+
+Here is how the tree looks like after adding the css file:
+
+  ```
+  lexonews/
+  ...
+  ├── admin.py
+  ├── apps.py
+  ...
+  ├── models.py
+  ├── static
+  │   └── css
+  │       └── lexonews.css
+  ├── templates
+  │   └── lexonews
+  │       └── articles.html
+  ```
+
 ## User administration/authentication
 Now how can I make it possible for users to add new things to the site?
 I guess I need some sort of user administration (sign up, log in) and a page to write articles
