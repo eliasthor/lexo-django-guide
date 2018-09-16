@@ -337,6 +337,7 @@ The data can be edited via admin site, but to be able to do that, the model need
 ## Create superuser
 A user is needed to be able to access the model via admin page
 
+Each time the web is installed on a new server, a superuser needs to be created
   ```
   (lexovenv)$ python manage.py createsuperuser
   # follow the instructions
