@@ -459,6 +459,11 @@ In addittion to css files, a base file can be added to the static directory.
 It should contain the basic structure for the web, to be used to keep the structure consistent:
 [Again, take a look at the DjangoGirls Turorial](https://tutorial.djangogirls.org/en/template_extending/#create-a-base-template)
 
+### Add input to the website
+Users should be able to add articles
+Start by allowing every user to add articles
+To do this, we need forms and buttons for new articles
+
 
 ## User administration/authentication
 Now how can I make it possible for users to add new things to the site?
