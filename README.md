@@ -468,3 +468,5 @@ To do this, we need forms and buttons for new articles
 ## User administration/authentication
 Now how can I make it possible for users to add new things to the site?
 I guess I need some sort of user administration (sign up, log in) and a page to write articles
+
+Further instructions regarding security are [here](https://tutorial.djangogirls.org/en/django_forms/#security) and [here](https://tutorial-extensions.djangogirls.org)
